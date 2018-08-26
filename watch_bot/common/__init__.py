@@ -3,8 +3,17 @@ import yaml
 import logging.config
 import logging
 import coloredlogs
+import pandas as pd
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+CONTROL_PANEL_URL = 'https://www.furaffinity.net/msg/others/'
+
+pd.set_option('display.expand_frame_repr', False)
+
+def dump_df(logger, df, df_name, show_all=False):
+    
+    logger('{} - {} rows - {} \n {}'.format(df_name, df.shape[0], list(df), df if show_all else df.head(5)))
 
 def get_logger(name):
     
